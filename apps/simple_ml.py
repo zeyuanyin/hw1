@@ -70,7 +70,7 @@ def softmax_loss(Z, y_one_hot):
 
     Z_log = ndl.ops.summation(Z * y_one_hot)
     Z_y = ndl.ops.summation(ndl.ops.log(ndl.ops.summation(ndl.ops.exp(Z), axes=(1,))))
-    loss = (Z_log - Z_y) / Z.shape[0]
+    loss = (Z_y- Z_log ) / Z.shape[0]
 
     return loss
 
