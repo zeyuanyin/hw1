@@ -1,6 +1,9 @@
 import sys
-sys.path.append('./python')
-sys.path.append('./apps')
+workpath='/home/zeyuan.yin/sys/hw1'
+sys.path.append('/home/zeyuan.yin/sys/hw1/python')
+sys.path.append('/home/zeyuan.yin/sys/hw1/apps')
+# sys.path.append('./python')
+# sys.path.append('./apps')
 from simple_ml import *
 import numdifftools as nd
 
@@ -19,7 +22,7 @@ def test_divide_forward():
 
 
 def test_divide_scalar_forward():
-    np.testing.assert_allclose(ndl.divide_scalar(ndl.Tensor([[1.7 , 1.45]]), scalar=12).numpy(), 
+    np.testing.assert_allclose(ndl.divide_scalar(ndl.Tensor([[1.7 , 1.45]]), scalar=12).numpy(),
         np.array([[0.141666666667, 0.120833333333]]))
 
 
@@ -388,6 +391,7 @@ def test_topo_sort():
                      np.array([[-0.88282157]]),
                      np.array([[4.63946401]])])
 
+
     topo_order = np.array([x.numpy() for x in ndl.autograd.find_topo_sort([c1])])
 
     assert len(soln) == len(topo_order)
@@ -654,3 +658,9 @@ def submit_nn_epoch_ndl():
     mugrade.submit(np.linalg.norm(W1.numpy()))
     mugrade.submit(np.linalg.norm(W2.numpy()))
     mugrade.submit(loss_err(ndl.Tensor(np.maximum(X@W1.numpy(),0))@W2, y))
+
+
+#############################################################################
+# debug code
+if __name__ == "__main__":
+    test_nn_epoch_ndl()
